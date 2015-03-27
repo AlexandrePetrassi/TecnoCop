@@ -30,7 +30,8 @@ namespace TecnoCop{
 			/// Inicia o Salto
 			/// </summary>
 			override protected void start_positive(){
-				ribo.velocity = new Vector2(ribo.velocity.x,jumpPower); 
+				//ribo.velocity = new Vector2(ribo.velocity.x,jumpPower); 
+				move.setVelocity_y(jumpPower,0);
 				if(++jumpCount > 1) Instantiate(doubleJumpParticle,transform.position,Quaternion.identity); // Incrementa +1 no contador de pulos e instancia o efeito de DoubleJump
 			}
 
@@ -38,15 +39,20 @@ namespace TecnoCop{
 			/// Cancela o salto caso ainda esteja sendo executado
 			/// </summary>
 			override protected void end(){
-				if(ribo.velocity.y > 0) ribo.velocity = new Vector2(ribo.velocity.x,0); 
+				if(ribo.velocity.y > 0)
+					//ribo.velocity = new Vector2(ribo.velocity.x,0); 
+					move.setVelocity_y(0,0);
 			}
 
 			/// <summary>
 			/// Caso o personagem toque o chao, o contador de saltos eh resetado
 			/// </summary>
 			private void refreshJumpCount(){
-				if(collision.feet.isColliding) jumpCount = 0;
+				if(collision.feet.isColliding || (wallSticking!=null && wallSticking.isWallSticking))
+					jumpCount = 0;
 			}
+
+			
 		}
 	}
 }

@@ -22,8 +22,11 @@ namespace TecnoCop{
 			/// Atualiza as Flags das animaçoes
 			/// </summary>
 			void setAniamtionFlags(){
-				animatore.SetInteger("SpeedX",(int)ribo.velocity.x);
-				animatore.SetInteger("SpeedY",(int)(ribo.velocity.y>0?1:(ribo.velocity.y<0?-2:0)));
+				animator.SetInteger("SpeedX",(int)(ribo.velocity.x>0?1:(ribo.velocity.x<0?-2:0)));
+				animator.SetInteger("SpeedY",(int)(ribo.velocity.y>0?1:(ribo.velocity.y<0?-2:0)));
+				animator.SetBool("WallColliding",wallSticking!=null? wallSticking.isWallSticking: false);
+				animator.SetBool("Dash",dash!=null? dash.isDashing: false);
+				animator.SetBool("OnGround",collision.feet.isColliding);
 			}
 		}
 	}

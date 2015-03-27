@@ -165,9 +165,6 @@ namespace TecnoCop{
 					newCollider.transform.position = getPosition();
 					BoxCollider2D component = newCollider.AddComponent<BoxCollider2D>();
 					component.size = new Vector2(bounds.width,bounds.height);
-					//component.sharedMaterial = new PhysicsMaterial2D();
-					//component.sharedMaterial.bounciness = 0;
-					//component.sharedMaterial.friction = 0;
 					newCollider.name = "Collider (" + newCollider.transform.position.x + "," + newCollider.transform.position.y + ")";
 					return newCollider;
 				}

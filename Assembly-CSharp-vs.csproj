@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Effects\FadeParticle.cs" />
      <Compile Include="Assets\Scripts\Player\AnimationManager.cs" />
      <Compile Include="Assets\Scripts\Player\CollisionManager.cs" />
+     <Compile Include="Assets\Scripts\Player\Dash.cs" />
      <Compile Include="Assets\Scripts\Player\Jump.cs" />
      <Compile Include="Assets\Scripts\Player\Move.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerModule.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerTrigger.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerUpdateable.cs" />
+     <Compile Include="Assets\Scripts\Player\WallStick.cs" />
      <Compile Include="Assets\Scripts\Scenario\Collideable.cs" />
      <Compile Include="Assets\Scripts\Scenario\Paralax.cs" />
      <Compile Include="Assets\Scripts\Scenario\ScenarioManager.cs" />

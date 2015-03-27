@@ -11,36 +11,43 @@ namespace TecnoCop{
 	namespace PlayerControl{
 		public class CollisionManager : PlayerModule {
 
-			public PlayerCollider feet;   // Usado para detectar colisoes com o chao
-			public PlayerCollider head;   // Usado para detectar colisoes com o teto
-			public PlayerCollider front;  // Usado para detectar colisoes com paredes
+			[HideInInspector]public PlayerCollider feet;   // Usado para detectar colisoes com o chao
+			[HideInInspector]public PlayerCollider head;   // Usado para detectar colisoes com o teto
+			[HideInInspector]public PlayerCollider front;  // Usado para detectar colisoes com paredes
 
-			public Vector3 feetPosition;  // Posiçao dos pes do personagem
-			public Vector3 headPosition;  // Posiçao da cabeça do personagem
-			public Vector3 frontPosition; // posiçao do collider frontal do personagem
-
-			public Vector2 feetSize;      // Tamanho do collider dos pes
-			public Vector2 headSize;      // Tamanho do collider da cabeça
-			public Vector2 frontSize;     // Tamanho do collider do front
+			public Rect feetRect;  // Posiçao e tamanho dos pes do personagem
+			public Rect headRect;  // Posiçao e tamanho da cabeça do personagem
+			public Rect frontRect; // posiçao e tamanho do collider frontal do personagem
 
 			void Start(){
-				feet  = makeCollider("Feet" ,feetPosition,feetSize);
-				head  = makeCollider("Head" ,headPosition,headSize);
-				front = makeCollider("Front",frontPosition,frontSize);
+				feet  = makeCollider("Feet" ,feetRect);
+				head  = makeCollider("Head" ,headRect);
+				front = makeCollider("Front",frontRect);
 			}
 
+
+			/// <summary>
+			/// A cada frame torna false todas as flags de colisao. 
+			/// Caso a colisao ainda esteja ocorrendo, a flag sera setada como true antes do fim do frame
+			/// Senao a flag continua como false, identificando assim uma "nao-colisao".
+			/// </summary>
 			public override void update(){
 				feet.isColliding  = false;
 				head.isColliding  = false;
 				front.isColliding = false;
 			}
 
-			private PlayerCollider makeCollider(string name, Vector3 position, Vector2 size){
+			/// <summary>
+			/// Cria um collider para gerenciar colisoes em diferentes partes do corpo do personagem
+			/// </summary>
+			private PlayerCollider makeCollider(string name, Rect rect){
 				GameObject collider = new GameObject();
 				collider.name = name;
+				Vector3 position = new Vector3(rect.x,rect.y);
 				collider.transform.position = transform.position + position;
-				collider.transform.parent =  transform;
+				collider.transform.parent = transform;
 				BoxCollider2D boxCollider = collider.AddComponent<BoxCollider2D>();
+				Vector2 size = new Vector2(rect.width,rect.height);
 				boxCollider.size = size;
 				boxCollider.isTrigger = true;
 				return collider.AddComponent<PlayerCollider>();

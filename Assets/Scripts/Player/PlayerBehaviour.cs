@@ -26,6 +26,8 @@ namespace TecnoCop{
 			// triggerables
 			static private Move             myMove;
 			static private Jump             myJump;
+			static private Dash             myDash;
+			static private WallStick        myWall;
 
 			static protected List<PlayerUpdateable> updateables = new List<PlayerUpdateable>();
 
@@ -51,7 +53,7 @@ namespace TecnoCop{
 				}
 			}
 
-			static public Animator animatore{
+			static public Animator animator{
 				get{
 					if(myAnim == null)
 						myAnim = myPlayer.GetComponent<Animator>();
@@ -103,6 +105,28 @@ namespace TecnoCop{
 				}
 				set{
 					myJump = value;
+				}
+			}
+
+			static public WallStick wallSticking{
+				get{
+					if(myWall == null)
+						myWall = myPlayer.GetComponent<WallStick>();
+					return myWall;
+				}
+				set{
+					myWall = value;
+				}
+			}
+
+			static public Dash dash{
+				get{
+					if(myDash == null)
+						myDash = myPlayer.GetComponent<Dash>();
+					return myDash;
+				}
+				set{
+					myDash = value;
 				}
 			}
 			

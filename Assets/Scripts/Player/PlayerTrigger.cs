@@ -11,6 +11,7 @@ namespace TecnoCop{
 
 			public TriggerAxis triggerAxis;   // Botao/Eixo usado para ativar o script
 			public TriggerType triggerType;   // Modo de ativaçao do script (HoldKey, SingleTap, DoubleTap...)
+			[HideInInspector]
 			public TriggerEvent triggerEvent; // Metodo que sera executado neste frame (Começar a açao, cancelar a açao, etc)
 			private bool myIsPressed;         // Checa se o botao esta precionado
 			private bool myWasPressed;        // Checa se o botao estava pressionado na ultima iteraçao
